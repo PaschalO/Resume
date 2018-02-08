@@ -1,3 +1,4 @@
+$(document).ready(function() {
 
     var bio = {
         name: "Paschal Oduoza",
@@ -19,59 +20,62 @@
         }
     };
 
-var education = {
-    schools: [
-        {
-            name: "University of Toronto",
-            location: "Toronto, Canada",
-            degree: "Bsc",
-            majors: ["Computer Science", "Statistics", "Mathematics"],
-            dates: "",
-            url: ""
-        }
-    ],
+    var education = {
+        schools: [
+            {
+                name: "University of Toronto",
+                location: "Toronto, Canada",
+                degree: "Bsc",
+                majors: ["Computer Science", "Statistics", "Mathematics"],
+                dates: "",
+                url: ""
+            }
+        ],
 
-    onlineCourses: [
-        {
-            name: "",
-            location: "Toronto",
-            degree: "Nano front-end Web developer",
-            majors: "Computer Science",
-            dates: "01-01-2018",
-            url: "www.udacity.com"
-        }
-    ],
+        onlineCourses: [
+            {
+                name: "",
+                location: "Toronto",
+                degree: "Nano front-end Web developer",
+                majors: "Computer Science",
+                dates: "01-01-2018",
+                url: "www.udacity.com"
+            }
+        ],
 
-    display: ""
-};
+        display: ""
+    };
 
-var work = {
-    jobs: [
-        {
-            employer: "Google",
-            title: "Web Developer",
-            location: "San Francisco",
-            dates: "05-05-2019",
-            descriptions: "Developed websites and other stuffs"
-        }
-    ],
+    var work = {
+        jobs: [
+            {
+                employer: "Google",
+                title: "Web Developer",
+                location: "San Francisco",
+                dates: "05-05-2019",
+                descriptions: "Developed websites and other stuffs"
+            }
+        ],
 
-    display: ""
-};
+        display: ""
+    };
 
-var projects = {
-    projects: [
-        {
-            title: "Online Resume",
-            dates: "",
-            description: "Using javascript to display the resume",
-            images: []
-        }
-    ],
+    var projects = {
+        projects: [
+            {
+                title: "Online Resume",
+                dates: "",
+                description: "Using javascript to display the resume",
+                images: []
+            }
+        ],
 
-    display: ""
-};
+        display: ""
+    };
 
+    bio.display():
+
+});
 
 
 

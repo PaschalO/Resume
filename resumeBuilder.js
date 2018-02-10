@@ -35,7 +35,7 @@ var education = {
     schools: [
         {
             name: "University of Toronto",
-            location: "Toronto, Canada",
+            location: "Toronto, CANADA",
             degree: "Bsc",
             majors: ["Computer Science"],
             minors: ["Statistics"],
@@ -54,7 +54,7 @@ var education = {
     onlineCourses: [
         {
             name: "Udacity",
-            location: "Toronto ON",
+            location: "Toronto CANADA",
             degree: "Nano front-end Web developer",
             majors: "Computer Science",
             dates: "01-01-2018",
@@ -80,9 +80,9 @@ var education = {
         var formattedOnlineTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[0].degree);
         var formattedOnlineSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[0].name);
         //look at the html code for the location
-        var formattedOnlineLocation = HTMLonlineLocation.replace("%data%", education.onlineCourses.location);
-        var formattedOnlineDate = HTMLonlineDates.replace("%data%", education.onlineCourses.dates);
-        var formattedOnlineUrl = HTMLonlineURL.replace("%data%", education.onlineCourses.url);
+        var formattedOnlineLocation = HTMLonlineLocation.replace("%data%", education.onlineCourses[0].location);
+        var formattedOnlineDate = HTMLonlineDates.replace("%data%", education.onlineCourses[0].dates);
+        var formattedOnlineUrl = HTMLonlineURL.replace("%data%", education.onlineCourses[0].url);
 
 
         $(i).append(HTMLschoolStart);
@@ -112,8 +112,19 @@ var education = {
 
         // high school code
 
+        var listOnlineCoursesInfo = [
+            formattedOnlineTitle + " " + formattedOnlineSchool,
+            formattedOnlineDate,
+            formattedOnlineLocation,
+            formattedOnlineUrl
+        ];
+
         $(i).append(HTMLonlineClasses);
 
+        listOnlineCoursesInfo.forEach(function (value) {
+            $('#education').find("h3").append(value);
+
+        });
 
     }
 };
@@ -129,21 +140,63 @@ var work = {
         }
     ],
 
-    display: ""
+    display: function() {
+
+        // chanage variable names
+        // work on this to display its number of work experiences. This is only valid for one experience
+        var workExp = $('#workExperience').find('h2').append(HTMLworkStart);
+
+        var formattedWorkEmployer =  HTMLworkEmployer.replace('%data%', work.jobs[0].employer);
+        var formattedWorkTitle = HTMLworkTitle.replace('%data%', work.jobs[0].title);
+        var formattedWorkLocation = HTMLworkLocation.replace('%data%', work.jobs[0].location);
+        var formattedWorkDates = HTMLworkDates.replace('%data%', work.jobs[0].dates);
+        var formattedWorkDescription = HTMLworkDescription.replace('%data%', work.jobs[0].descriptions);
+
+        var listFormattedWorkInfo = [
+            formattedWorkEmployer + " " +  formattedWorkTitle,
+            formattedWorkLocation,
+            formattedWorkDates,
+            formattedWorkDescription
+        ];
+
+        listFormattedWorkInfo.forEach(function (value) {
+            $('.work-entry').append(value);
+        });
+    }
 };
 
 var projects = {
     projects: [
         {
             title: "Online Resume",
-            dates: "",
+            dates: "2017",
             description: "Using javascript to display the resume",
-            images: []
+            images: ['Insert Image']
         }
     ],
 
-    display: ""
+    display: function () {
+        var projectExp = $('#projects').find('h2').append(HTMLprojectStart);
+
+        var formattedProjectTitle =  HTMLprojectTitle.replace("%data%", projects.projects[0].title);
+        var formattedDates = HTMLprojectDates.replace("%data%", projects.projects[0].dates);
+        var formattedProjectDescription = HTMLprojectDescription.replace("%data%", projects.projects[0].description);
+        var formattedImages = HTMLprojectImage.replace("%data%", projects.projects[0].images);
+
+        var listFormattedProjects = [
+            formattedProjectTitle,
+            formattedDates,
+            formattedProjectDescription,
+            formattedImages
+        ];
+
+        listFormattedProjects.forEach(function (value) {
+           $('.project-entry').append(value);
+        });
+    }
 };
 
 bio.display();
 education.display();
+work.display();
+projects.display();

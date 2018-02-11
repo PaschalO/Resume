@@ -1,19 +1,19 @@
-
 var bio = {
     name: "Paschal Oduoza",
     role: "Web developer",
     contacts: {
         mobile: "6476061116",
         email: "paschal.oduoza@gmail.com",
-        github: "#Link",
+        github: "https://github.com/PaschalO",
         twitter: "#",
         location: "Toronto, Canada"
     },
     welcomeMessage: "Here is my resume that displays my skills",
-    skills: "",
+    skills: ["This is where i show case my talents", "Pro at Javascript, Jquery, CSS, HTML"],
     biopic: "url",
     display: function showBioInfo(){
         var topContacts = $('#topContacts');
+        var header = $('#header');
         var formattedName = HTMLheaderName.replace("%data%", bio.name);
         var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
         var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
@@ -21,7 +21,21 @@ var bio = {
         var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
         var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
         var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
-        $("#header").prepend(formattedName);
+        var formattedBioPic = HTMLbioPic.replace("%data", bio.biopic);
+        var formattedWelcomeMsg = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
+        //var formattedSkillStart = HTMLskillsStart.replace("%data%", bio.skills);
+        var formattedSkills = HTMLskills.replace("%data%", bio.skills[0]);
+        var formattedNewSkills = HTMLskills.replace("%data%", bio.skills[1]);
+
+
+        $(header).prepend(formattedName);
+        $(header).append(formattedBioPic);
+        $(header).append(formattedWelcomeMsg);
+        $(header).append(HTMLskillsStart);
+        $(header).find('#skills').append(formattedSkills).append(formattedNewSkills);
+
+
+
         $("#name").after(formattedRole);
         $(topContacts).append(formattedMobile);
         $(topContacts).append(formattedEmail);

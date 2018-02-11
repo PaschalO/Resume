@@ -210,6 +210,9 @@ var projects = {
     }
 };
 
+$('#mapDiv').find('h2').append(googleMap);
+
+
 bio.display();
 education.display();
 work.display();

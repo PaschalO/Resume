@@ -9,7 +9,7 @@ var bio = {
         location: "Toronto, CANADA"
     },
     welcomeMessage: "Here is my resume that displays my skills",
-    skills: ["This is where i show case my talents", "Pro at Javascript, Jquery, CSS, HTML"],
+    skills: ["This is where i show case my talents", "Javascript, Jquery, CSS, HTML"],
     biopic: "url",
     display: function(){
         var topContacts = $('#topContacts');

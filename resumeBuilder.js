@@ -6,7 +6,7 @@ var bio = {
         email: "paschal.oduoza@gmail.com",
         github: "https://github.com/PaschalO",
         twitter: "#",
-        location: "Toronto, Canada"
+        location: "Toronto, CANADA"
     },
     welcomeMessage: "Here is my resume that displays my skills",
     skills: ["This is where i show case my talents", "Pro at Javascript, Jquery, CSS, HTML"],
@@ -59,7 +59,7 @@ var education = {
 
         {
             name: "James Cardinal McGuigan",
-            location: "Toronto, Canada",
+            location: "Toronto, CANADA",
             degree: "High School Diploma",
             dates: "2011"
         }
@@ -79,27 +79,84 @@ var education = {
 
     // this code needs to optimized
     display: function showEducationInfo() {
-        var i = $('#education').find("h2");
-        var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[0].name);
-        var formattedDegree = HTMLschoolDegree.replace("%data%", education.schools[0].degree);
-        var formattedLocation =  HTMLschoolLocation.replace("%data%", education.schools[0].location);
-        var formattedMajors = HTMLschoolMajor.replace("%data%", education.schools[0].majors);
-        var formattedMinors = HTMLschoolMinor.replace("%data%", education.schools[0].minors[0]);
-           // + HTMLschoolName.replace("%data%", education.schools[0].minors[1]);
-        var formattedDates = HTMLschoolDates.replace("%data%", education.schools[0].dates);
-        var formattedUrl = HTMLschoolURL.replace("%data%", education.schools[0].url);
+        //var educationDiv = $('#education');
+        var listFormattedInfos = [];
+        var listOnlineCoursesInfo = [];
+        var educationDiv = $('#education').find("h2");
+        $(educationDiv).append(HTMLschoolStart);
+        var onlineHeader = $(educationDiv).append(HTMLonlineClasses);
 
+        for (var i=0; i < education.schools.length; i++){
+
+            // if ((education.schools[i].hasOwnProperty('name') && (education.schools[i].hasOwnProperty('location') )
+            //     && (education.schools[i].hasOwnProperty('degree')) && (education.schools[i].hasOwnProperty('majors'))
+            //     && (education.schools[i].hasOwnProperty('dates')) && (education.schools[i].hasOwnProperty('url')))) {
+
+                var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[i].name);
+                var formattedDegree = HTMLschoolDegree.replace("%data%", education.schools[i].degree);
+                var formattedLocation =  HTMLschoolLocation.replace("%data%", education.schools[i].location);
+                var formattedMajors = HTMLschoolMajor.replace("%data%", education.schools[i].majors);
+                //var formattedMinors = HTMLschoolMinor.replace("%data%", education.schools[i].minors[i]);
+                // + HTMLschoolName.replace("%data%", education.schools[0].minors[1]);
+                var formattedDates = HTMLschoolDates.replace("%data%", education.schools[i].dates);
+                var formattedUrl = HTMLschoolURL.replace("%data%", education.schools[i].url);
+                listFormattedInfos.push(formattedSchoolName.concat(formattedDegree));
+                listFormattedInfos.push(formattedLocation);
+                listFormattedInfos.push(formattedDates);
+                listFormattedInfos.push(formattedMajors);
+                //listFormattedInfos.push(formattedMinors);
+                listFormattedInfos.push(formattedUrl);
+
+        }
+
+        listFormattedInfos.forEach(function (value, index) {
+            if (value.search('undefined') !== -1){
+                var indx = listFormattedInfos.indexOf(index);
+                listFormattedInfos.splice(indx, 1);
+            }
+            else{
+                $('.education-entry').append(value);
+            }
+
+
+
+        });
+        $('.education-entry').append('<br>');
+
+        // online education
+
+        for (var j=0; j < education.onlineCourses.length; j++){
+            var formattedOnlineTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[j].degree);
+            var formattedOnlineSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[j].name);
+            //look at the html code for the location
+            var formattedOnlineLocation = HTMLonlineLocation.replace("%data%", education.onlineCourses[j].location);
+            var formattedOnlineDate = HTMLonlineDates.replace("%data%", education.onlineCourses[j].dates);
+            var formattedOnlineUrl = HTMLonlineURL.replace("%data%", education.onlineCourses[j].url);
+            listOnlineCoursesInfo.push(formattedOnlineTitle.concat(formattedOnlineSchool));
+            listOnlineCoursesInfo.push(formattedOnlineDate);
+            listOnlineCoursesInfo.push(formattedOnlineLocation);
+            listOnlineCoursesInfo.push(formattedOnlineUrl);
+        }
+
+        listOnlineCoursesInfo.forEach(function (v, y) {
+            if (v.search('undefined') !== -1){
+                var indx = listOnlineCoursesInfo.indexOf(y);
+                listOnlineCoursesInfo.splice(indx, 1);
+            }
+            else
+                $('#education').find("h3").append(v);
+        });
 
         // code for the online course
-        var formattedOnlineTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[0].degree);
-        var formattedOnlineSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[0].name);
-        //look at the html code for the location
-        var formattedOnlineLocation = HTMLonlineLocation.replace("%data%", education.onlineCourses[0].location);
-        var formattedOnlineDate = HTMLonlineDates.replace("%data%", education.onlineCourses[0].dates);
-        var formattedOnlineUrl = HTMLonlineURL.replace("%data%", education.onlineCourses[0].url);
+        // var formattedOnlineTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[0].degree);
+        // var formattedOnlineSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[0].name);
+        // //look at the html code for the location
+        // var formattedOnlineLocation = HTMLonlineLocation.replace("%data%", education.onlineCourses[0].location);
+        // var formattedOnlineDate = HTMLonlineDates.replace("%data%", education.onlineCourses[0].dates);
+        // var formattedOnlineUrl = HTMLonlineURL.replace("%data%", education.onlineCourses[0].url);
 
 
-        $(i).append(HTMLschoolStart);
+
         //$('.education-entry').append(formattedSchoolName);
        /*
         $(i).append(formattedSchoolName);
@@ -110,35 +167,33 @@ var education = {
         $(i).append(formattedUrl);
 */
 
-        var listFormattedInfos = [
-            formattedSchoolName + " " + formattedDegree,
-            formattedLocation,
-            formattedDates,
-            formattedMajors,
-            formattedMinors,
-            formattedUrl
-        ];
+        // var listFormattedInfos = [
+        //     formattedSchoolName + " " + formattedDegree,
+        //     formattedLocation,
+        //     formattedDates,
+        //     formattedMajors,
+        //     formattedMinors,
+        //     formattedUrl
+        // ];
 
-        listFormattedInfos.forEach(function (value) {
-            $('.education-entry').append(value);
-        })
+
 
 
         // high school code
 
-        var listOnlineCoursesInfo = [
-            formattedOnlineTitle + " " + formattedOnlineSchool,
-            formattedOnlineDate,
-            formattedOnlineLocation,
-            formattedOnlineUrl
-        ];
-
-        $(i).append(HTMLonlineClasses);
-
-        listOnlineCoursesInfo.forEach(function (value) {
-            $('#education').find("h3").append(value);
-
-        });
+        // var listOnlineCoursesInfo = [
+        //     formattedOnlineTitle + " " + formattedOnlineSchool,
+        //     formattedOnlineDate,
+        //     formattedOnlineLocation,
+        //     formattedOnlineUrl
+        // ];
+        //
+        //
+        //
+        // listOnlineCoursesInfo.forEach(function (value) {
+        //     $('#education').find("h3").append(value);
+        //
+        // });
 
     }
 };

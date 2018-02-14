@@ -110,7 +110,9 @@ function initializeMap() {
     var locations;
 
     var mapOptions = {
-        disableDefaultUI: true
+        disableDefaultUI: true,
+        zoom: 4,
+        center: {lat: -33, lng: 151}
     };
 
     /*
@@ -193,16 +195,6 @@ function initializeMap() {
     }
 
     /*
-    callback(results, status) makes sure the search returned results for a location.
-    If so, it creates a new map marker for that location.
-    */
-    function callback(results, status) {
-        if (status == google.maps.places.PlacesServiceStatus.OK) {
-            createMapMarker(results[0]);
-        }
-    }
-
-    /*
     pinPoster(locations) takes in the array of locations created by locationFinder()
     and fires off Google place searches for each location
     */
@@ -223,6 +215,16 @@ function initializeMap() {
             // function with the search results after each search.
             service.textSearch(request, callback);
         });
+    }
+
+    /*
+    callback(results, status) makes sure the search returned results for a location.
+    If so, it creates a new map marker for that location.
+    */
+    function callback(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+            createMapMarker(results[0]);
+        }
     }
 
     // Sets the boundaries of the map based on pin locations

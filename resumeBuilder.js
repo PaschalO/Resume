@@ -219,8 +219,12 @@ var projects = {
     }
 };
 
-$('#mapDiv').find('h2').append(googleMap);
+$('#mapDiv').append(googleMap);
 
+var footerContacts = $('#footerContacts');
+$(footerContacts).append(bio.contacts.mobile);
+$(footerContacts).append(bio.contacts.email);
+$(footerContacts).append(bio.contacts.twitter);
 
 bio.display();
 education.display();

@@ -4,9 +4,9 @@ var bio = {
     contacts: {
         mobile: "6476061116",
         email: "paschal.oduoza@gmail.com",
-        github: "https://github.com/PaschalO",
-        twitter: "https://goo.gl/6W1FDJ",
-        location: "Toronto, Canada"
+        github: "PaschalO",
+        twitter: "NewtonEinstein_",
+        location: "Toronto"
     },
     welcomeMessage: "Here is my resume that displays my skills",
     skills: ["HMTL5", "Javascript", "Jquery", "CSS3", "Google Map API", "Github"],

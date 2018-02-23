@@ -230,3 +230,10 @@ span {
         display: block;
     }
 }
+
+/**** modified CSS ****/
+
+.sub-headers {
+    font-size: 17px;
+    font-weight: bold;
+}

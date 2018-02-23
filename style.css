@@ -61,6 +61,11 @@ h5 {
 
 }
 
+.education-entry h3 {
+    padding-left: 0;
+    font-style: normal;
+}
+
 
 .date-text {
     font-style: italic;
@@ -90,6 +95,12 @@ a {
     text-decoration: none;
     margin-top: 10px;
     display: block;
+
+}
+
+em {
+    font-style: normal;
+    font-size: 0.7975em;
 }
 
 .welcome-message {

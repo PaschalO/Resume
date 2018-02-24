@@ -107,18 +107,7 @@ var education = {
             listFormattedInfos.push(formattedUrl);
         }
 
-        // dosen't display the datas that are undefined e.g Major(key): "undefined"(value) - wont be displayed in the
-        // second school data. The same is applicable to the rest down below
-        listFormattedInfos.forEach(function (value, index) {
-            if (value.search('undefined') !== -1){
-                var indx = listFormattedInfos.indexOf(index);
-                listFormattedInfos.splice(indx, 1);
-            }
-            else{
-                $('.education-entry').append(value);
-            }
-
-        });
+        listDatas(listFormattedInfos, educationEntry);
         $(educationEntry).append('<br>');
 
         var onlineHeader = $(educationEntry).append(HTMLonlineClasses);
@@ -134,14 +123,7 @@ var education = {
             listOnlineCoursesInfo.push(formattedOnlineUrl);
         }
 
-        listOnlineCoursesInfo.forEach(function (value, index) {
-            if (value.search('undefined') !== -1){
-                var indx = listOnlineCoursesInfo.indexOf(index);
-                listOnlineCoursesInfo.splice(indx, 1);
-            }
-            else
-                $(onlineHeader).append(value);
-        });
+        listDatas(listOnlineCoursesInfo, onlineHeader);
     }
 };
 
@@ -159,6 +141,7 @@ var work = {
     display: function() {
         var listFormattedWorkInfo = [];
         var workExp = $('#workExperience').append(HTMLworkStart);
+        var workEntry = $('.work-entry');
         for (var i=0; i < work.jobs.length; i++){
             var formattedWorkEmployer =  HTMLworkEmployer.replace('%data%', work.jobs[i].employer);
             var formattedWorkTitle = HTMLworkTitle.replace('%data%', work.jobs[i].title);
@@ -171,16 +154,7 @@ var work = {
             listFormattedWorkInfo.push(formattedWorkDescription);
         }
 
-        listFormattedWorkInfo.forEach(function (value, index) {
-            if (value.search('undefined') !== -1){
-                var indx = listFormattedWorkInfo.indexOf(index);
-                listFormattedWorkInfo.splice(indx, 1);
-            }
-            else{
-                $('.work-entry').append(value);
-            }
-
-        });
+        listDatas(listFormattedWorkInfo, workEntry);
     }
 };
 
@@ -196,6 +170,7 @@ var projects = {
 
     display: function () {
         var projectExp = $('#projects').append(HTMLprojectStart);
+        var projectEntry = $('.project-entry');
         var listFormattedProjects = [];
         var formattedImages;
         for (var i=0; i < projects.projects.length; i++){
@@ -211,20 +186,31 @@ var projects = {
             });
         }
 
-        listFormattedProjects.forEach(function (value, index) {
-            if (value.search('undefined') !== -1){
-                var indx = listFormattedProjects.indexOf(index);
-                listFormattedProjects.splice(indx, 1);
-            }
-            else{
-                $('.project-entry').append(value);
-            }
-
-        });
+        listDatas(listFormattedProjects, projectEntry);
     }
 };
 
 $('#mapDiv').append(googleMap);
+
+/**
+ * Below code dosen't display the datas that are undefined
+ * e.g Major(key): "undefined"(value) - wont be displayed in the second school data.
+ *
+ * first @param - Takes an array
+ * second @param - Takes a jquery selector
+ *
+ * */
+function listDatas(arrays, selector){
+    for (var k=0; k < arrays.length; k++){
+        if (arrays[k].search('undefined') !== -1){
+            arrays.splice(k, 1);
+        }
+
+        else{
+            $(selector.append(arrays[k]));
+        }
+    }
+}
 
 bio.display();
 education.display();
